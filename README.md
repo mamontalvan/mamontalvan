@@ -7,11 +7,10 @@
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=mamontalvan&layout=compact)](https://github.com/mamontalvan/github-readme-stats)
 
-[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=mamontalvan)](https://github.com/anuraghazra/github-readme-stats)
-
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=mamontalvan&show_icons=true&theme=radical)
 
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=mamontalvan&repo=github-readme-stats)](https://github.com/mamontalvan/github-readme-stats)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=mamontalvan)](https://github.com/mamontalvan/github-readme-stats)
+
 <!--
 ![Mayra's GitHub stats](https://github-readme-stats.vercel.app/api?username=mamontalvan&show_icons=true&theme=radical)
 
