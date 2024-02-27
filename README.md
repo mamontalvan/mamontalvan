@@ -4,17 +4,15 @@
 -->
 [![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-0e76a8?style=flat-square&logo=Linkedin&logoColor=white)](https://linkedin.com/in/maymontalvan/)
 [![Twitter Badge](https://img.shields.io/badge/-Twitter-00acee?style=flat-square&logo=Twitter&logoColor=white)](https://twitter.com/maychiqui)
+[![Telegram Badge](https://img.shields.io/badge/-Telegram-0088cc?style=flat-square&logo=Telegram&logoColor=white)](https://t.me/iampavangandhi)
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=mamontalvan)](https://github.com/mamontalvan/github-readme-stats)
-
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=mamontalvan&show_icons=true&theme=radical)
-
 
 
 
 ![Mayra's GitHub stats](https://github-readme-stats.vercel.app/api?username=mamontalvan&show_icons=true&theme=radical)
 
-[![Telegram Badge](https://img.shields.io/badge/-Telegram-0088cc?style=flat-square&logo=Telegram&logoColor=white)](https://t.me/iampavangandhi)
+
 
 
 <!--
