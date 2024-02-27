@@ -4,18 +4,13 @@
 -->
 [![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-0e76a8?style=flat-square&logo=Linkedin&logoColor=white)](https://linkedin.com/in/maymontalvan/)
 [![Twitter Badge](https://img.shields.io/badge/-Twitter-00acee?style=flat-square&logo=Twitter&logoColor=white)](https://twitter.com/maychiqui)
-[![Telegram Badge](https://img.shields.io/badge/-Telegram-0088cc?style=flat-square&logo=Telegram&logoColor=white)](https://t.me/iampavangandhi)
-
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=mamontalvan)](https://github.com/mamontalvan/github-readme-stats)
 
 
 
-![Mayra's GitHub stats](https://github-readme-stats.vercel.app/api?username=mamontalvan&show_icons=true&theme=radical)
-
-
-
-
 <!--
+[![Telegram Badge](https://img.shields.io/badge/-Telegram-0088cc?style=flat-square&logo=Telegram&logoColor=white)](https://t.me/iampavangandhi)
+
 **mamontalvan/mamontalvan** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
 Here are some ideas to get you started:
