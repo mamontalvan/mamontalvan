@@ -1,4 +1,5 @@
 ## Hey 👋, I'm [Mayra Montalván!](https://github.com/mamontalvan/)
+Soy ingeniera de software a la que le apasiona la crear soluciones tecnológicas y hacer que la contribución al código abierto sea más accesible. Algunas tecnologías con las que disfruto trabajar incluyen TypeScript, JavaScript, NEST, Angular y AWS.
 <!--
 [![Website Badge](https://img.shields.io/badge/Website-3b5998?style=flat-square&logo=google-chrome&logoColor=white)](https://maymontalvan.dev/)
 -->
