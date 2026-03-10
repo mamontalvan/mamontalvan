@@ -1,5 +1,5 @@
 ## Hey 👋, I'm [Mayra Montalván!](https://github.com/mamontalvan/)
-Software Engineer focused on building scalable technological solutions and promoting accessibility in open-source contributions. Experienced in TypeScript, JavaScript, PHP, NestJS, Angular, and AWS.
+Software Engineer focused on building scalable technological solutions and promoting accessibility in open-source contributions. Experienced in TypeScript, JavaScript, NestJS, Angular, and AWS.
 <!--
 [![Website Badge](https://img.shields.io/badge/Website-3b5998?style=flat-square&logo=google-chrome&logoColor=white)](https://maymontalvan.dev/)
 -->
