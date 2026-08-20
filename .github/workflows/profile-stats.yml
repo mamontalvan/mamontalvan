@@ -1,0 +1,316 @@
+name: Update profile statistics
+
+on:
+schedule:
+- cron: "0 0 * * *"
+workflow_dispatch:
+push:
+branches:
+- main
+
+permissions:
+contents: write
+
+jobs:
+update-stats:
+runs-on: ubuntu-latest
+
+```
+steps:
+  - name: Checkout repository
+    uses: actions/checkout@v4
+
+  - name: Generate statistics
+    uses: actions/github-script@v7
+    with:
+      github-token: ${{ secrets.GITHUB_TOKEN }}
+      script: |
+        const fs = require("fs");
+
+        const username = "mamontalvan";
+
+        // Get all public repositories owned by the user
+        const repos = await github.paginate(
+          github.rest.repos.listForUser,
+          {
+            username,
+            type: "owner",
+            visibility: "public",
+            per_page: 100
+          }
+        );
+
+        const languages = {};
+
+        for (const repo of repos) {
+          if (repo.fork) continue;
+
+          try {
+            const result = await github.rest.repos.listLanguages({
+              owner: username,
+              repo: repo.name
+            });
+
+            for (const [language, bytes] of Object.entries(result.data)) {
+              languages[language] =
+                (languages[language] || 0) + bytes;
+            }
+          } catch (error) {
+            console.log(
+              `Could not read ${repo.name}: ${error.message}`
+            );
+          }
+        }
+
+        const total = Object.values(languages)
+          .reduce((a, b) => a + b, 0);
+
+        const sorted = Object.entries(languages)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 10);
+
+        const rows = sorted.map(([language, bytes], index) => {
+          const percentage = total
+            ? ((bytes / total) * 100).toFixed(1)
+            : "0.0";
+
+          const width = Math.max(
+            2,
+            Math.round(Number(percentage) * 4)
+          );
+
+          return {
+            language,
+            percentage,
+            width
+          };
+        });
+
+        const languageColors = {
+          TypeScript: "#3178c6",
+          JavaScript: "#f1e05a",
+          Python: "#3572A5",
+          Java: "#b07219",
+          HTML: "#e34c26",
+          CSS: "#563d7c",
+          Shell: "#89e051",
+          PHP: "#4F5D95",
+          C: "#555555",
+          "C++": "#f34b7d",
+          Go: "#00ADD8",
+          Rust: "#dea584",
+          Dart: "#00B4AB",
+          Kotlin: "#A97BFF",
+          Swift: "#F05138"
+        };
+
+        const barColor = "#58a6ff";
+
+        const rowsSvg = rows.map((row, i) => {
+          const y = 75 + i * 42;
+          const color =
+            languageColors[row.language] || barColor;
+
+          return `
+            <text
+              x="30"
+              y="${y}"
+              fill="#c9d1d9"
+              font-size="15"
+              font-family="Arial, sans-serif"
+            >${row.language}</text>
+
+            <rect
+              x="150"
+              y="${y - 15}"
+              width="400"
+              height="16"
+              rx="8"
+              fill="#30363d"
+            />
+
+            <rect
+              x="150"
+              y="${y - 15}"
+              width="${row.width * 4}"
+              height="16"
+              rx="8"
+              fill="${color}"
+            />
+
+            <text
+              x="570"
+              y="${y}"
+              fill="#8b949e"
+              font-size="14"
+              font-family="Arial, sans-serif"
+            >${row.percentage}%</text>
+          `;
+        }).join("");
+
+        const languageHeight =
+          Math.max(150, 105 + rows.length * 42);
+
+        const languagesSvg = `
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="640"
+          height="${languageHeight}"
+          viewBox="0 0 640 ${languageHeight}"
+        >
+          <rect
+            width="100%"
+            height="100%"
+            rx="12"
+            fill="#0d1117"
+            stroke="#30363d"
+          />
+
+          <text
+            x="30"
+            y="38"
+            fill="#f0f6fc"
+            font-size="20"
+            font-weight="bold"
+            font-family="Arial, sans-serif"
+          >
+            Languages used in my repositories
+          </text>
+
+          ${rowsSvg}
+        </svg>
+        `;
+
+        fs.mkdirSync("assets", { recursive: true });
+
+        fs.writeFileSync(
+          "assets/languages.svg",
+          languagesSvg
+        );
+
+        // ------------------------------------------------
+        // GitHub statistics
+        // ------------------------------------------------
+
+        const user = await github.rest.users.getByUsername({
+          username
+        });
+
+        const statsSvg = `
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="640"
+          height="190"
+          viewBox="0 0 640 190"
+        >
+          <rect
+            width="100%"
+            height="100%"
+            rx="12"
+            fill="#0d1117"
+            stroke="#30363d"
+          />
+
+          <text
+            x="30"
+            y="38"
+            fill="#f0f6fc"
+            font-size="20"
+            font-weight="bold"
+            font-family="Arial, sans-serif"
+          >
+            GitHub Stats
+          </text>
+
+          <text
+            x="30"
+            y="82"
+            fill="#8b949e"
+            font-size="15"
+            font-family="Arial, sans-serif"
+          >
+            Public repositories
+          </text>
+
+          <text
+            x="30"
+            y="110"
+            fill="#f0f6fc"
+            font-size="24"
+            font-weight="bold"
+            font-family="Arial, sans-serif"
+          >
+            ${user.data.public_repos}
+          </text>
+
+          <text
+            x="230"
+            y="82"
+            fill="#8b949e"
+            font-size="15"
+            font-family="Arial, sans-serif"
+          >
+            Followers
+          </text>
+
+          <text
+            x="230"
+            y="110"
+            fill="#f0f6fc"
+            font-size="24"
+            font-weight="bold"
+            font-family="Arial, sans-serif"
+          >
+            ${user.data.followers}
+          </text>
+
+          <text
+            x="430"
+            y="82"
+            fill="#8b949e"
+            font-size="15"
+            font-family="Arial, sans-serif"
+          >
+            Following
+          </text>
+
+          <text
+            x="430"
+            y="110"
+            fill="#f0f6fc"
+            font-size="24"
+            font-weight="bold"
+            font-family="Arial, sans-serif"
+          >
+            ${user.data.following}
+          </text>
+
+          <text
+            x="30"
+            y="155"
+            fill="#8b949e"
+            font-size="13"
+            font-family="Arial, sans-serif"
+          >
+            Updated automatically by GitHub Actions
+          </text>
+        </svg>
+        `;
+
+        fs.writeFileSync(
+          "assets/github-stats.svg",
+          statsSvg
+        );
+
+  - name: Commit generated statistics
+    run: |
+      git config user.name "github-actions[bot]"
+      git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      git add assets/
+
+      git diff --cached --quiet || \
+        git commit -m "chore: update profile statistics"
+
+      git push
+```
