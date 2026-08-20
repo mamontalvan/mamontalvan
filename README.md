@@ -1,14 +1,6 @@
-# 👋 Hi, I'm Mayra Montalvan
-
-### Software Engineer · Backend · Cloud · AI
-
-I'm a Software Engineer focused on building scalable, reliable, and maintainable technological solutions.
+## 🧑‍💻 About Me
 
 I enjoy designing backend systems, working with cloud infrastructure, exploring AI-powered applications, and turning complex problems into simple and effective solutions.
-
----
-
-## 🧑‍💻 About Me
 
 - 💻 Software Engineer focused on backend development
 - 🚀 Interested in scalable and distributed systems
