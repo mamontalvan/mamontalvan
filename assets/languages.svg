@@ -1,0 +1,233 @@
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="640"
+    height="362"
+    viewBox="0 0 640 362"
+  >
+
+    <rect
+      width="640"
+      height="362"
+      rx="14"
+      fill="#0d1117"
+      stroke="#30363d"
+    />
+
+    <text
+      x="30"
+      y="40"
+      fill="#f0f6fc"
+      font-size="20"
+      font-weight="bold"
+      font-family="Arial, Helvetica, sans-serif"
+    >
+      Languages used in my repositories
+    </text>
+
+    
+      <text
+        x="30"
+        y="78"
+        fill="#c9d1d9"
+        font-size="15"
+        font-family="Arial, Helvetica, sans-serif"
+      >TypeScript</text>
+
+      <rect
+        x="155"
+        y="63"
+        width="380"
+        height="16"
+        rx="8"
+        fill="#30363d"
+      />
+
+      <rect
+        x="155"
+        y="63"
+        width="240.7035396564488"
+        height="16"
+        rx="8"
+        fill="#3178c6"
+      />
+
+      <text
+        x="555"
+        y="78"
+        fill="#8b949e"
+        font-size="14"
+        font-family="Arial, Helvetica, sans-serif"
+      >63.3%</text>
+    
+      <text
+        x="30"
+        y="120"
+        fill="#c9d1d9"
+        font-size="15"
+        font-family="Arial, Helvetica, sans-serif"
+      >JavaScript</text>
+
+      <rect
+        x="155"
+        y="105"
+        width="380"
+        height="16"
+        rx="8"
+        fill="#30363d"
+      />
+
+      <rect
+        x="155"
+        y="105"
+        width="110.71433052687053"
+        height="16"
+        rx="8"
+        fill="#f1e05a"
+      />
+
+      <text
+        x="555"
+        y="120"
+        fill="#8b949e"
+        font-size="14"
+        font-family="Arial, Helvetica, sans-serif"
+      >29.1%</text>
+    
+      <text
+        x="30"
+        y="162"
+        fill="#c9d1d9"
+        font-size="15"
+        font-family="Arial, Helvetica, sans-serif"
+      >HTML</text>
+
+      <rect
+        x="155"
+        y="147"
+        width="380"
+        height="16"
+        rx="8"
+        fill="#30363d"
+      />
+
+      <rect
+        x="155"
+        y="147"
+        width="14.401922280637915"
+        height="16"
+        rx="8"
+        fill="#e34c26"
+      />
+
+      <text
+        x="555"
+        y="162"
+        fill="#8b949e"
+        font-size="14"
+        font-family="Arial, Helvetica, sans-serif"
+      >3.8%</text>
+    
+      <text
+        x="30"
+        y="204"
+        fill="#c9d1d9"
+        font-size="15"
+        font-family="Arial, Helvetica, sans-serif"
+      >CSS</text>
+
+      <rect
+        x="155"
+        y="189"
+        width="380"
+        height="16"
+        rx="8"
+        fill="#30363d"
+      />
+
+      <rect
+        x="155"
+        y="189"
+        width="12.110869919821322"
+        height="16"
+        rx="8"
+        fill="#563d7c"
+      />
+
+      <text
+        x="555"
+        y="204"
+        fill="#8b949e"
+        font-size="14"
+        font-family="Arial, Helvetica, sans-serif"
+      >3.2%</text>
+    
+      <text
+        x="30"
+        y="246"
+        fill="#c9d1d9"
+        font-size="15"
+        font-family="Arial, Helvetica, sans-serif"
+      >Python</text>
+
+      <rect
+        x="155"
+        y="231"
+        width="380"
+        height="16"
+        rx="8"
+        fill="#30363d"
+      />
+
+      <rect
+        x="155"
+        y="231"
+        width="4"
+        height="16"
+        rx="8"
+        fill="#3572A5"
+      />
+
+      <text
+        x="555"
+        y="246"
+        fill="#8b949e"
+        font-size="14"
+        font-family="Arial, Helvetica, sans-serif"
+      >0.3%</text>
+    
+      <text
+        x="30"
+        y="288"
+        fill="#c9d1d9"
+        font-size="15"
+        font-family="Arial, Helvetica, sans-serif"
+      >SCSS</text>
+
+      <rect
+        x="155"
+        y="273"
+        width="380"
+        height="16"
+        rx="8"
+        fill="#30363d"
+      />
+
+      <rect
+        x="155"
+        y="273"
+        width="4"
+        height="16"
+        rx="8"
+        fill="#c6538c"
+      />
+
+      <text
+        x="555"
+        y="288"
+        fill="#8b949e"
+        font-size="14"
+        font-family="Arial, Helvetica, sans-serif"
+      >0.2%</text>
+    
+
+  </svg>
