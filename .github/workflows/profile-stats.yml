@@ -1,370 +1,35 @@
 name: Update profile statistics
-on: workflow_dispatch: schedule: - cron: "0 0 * * *" push: branches: - main
-permissions: contents: write
-concurrency: group: profile-statistics cancel-in-progress: true
-jobs: update-stats: name: Generate profile statistics runs-on: ubuntu-latest
-steps:
-  - name: Checkout repository
-    uses: actions/checkout@v4
-    with:
-      fetch-depth: 1
 
-  - name: Generate statistics
-    uses: actions/github-script@v7
-    with:
-      github-token: ${{ secrets.GITHUB_TOKEN }}
-      script: |
-        const fs = require("fs");
+on:
+  workflow_dispatch:
 
-        const username = "mamontalvan";
+permissions:
+  contents: write
 
-        console.log(`Collecting statistics for ${username}...`);
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
 
-        // --------------------------------------------------
-        // Get public repositories
-        // --------------------------------------------------
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-        const repos = await github.paginate(
-          github.rest.repos.listForUser,
-          {
-            username,
-            type: "owner",
-            visibility: "public",
-            per_page: 100
-          }
-        );
+      - name: Test workflow
+        run: |
+          echo "GitHub Actions is working correctly."
+          mkdir -p assets
+          echo "Profile statistics workflow is working." > assets/test.txt
 
-        console.log(`Found ${repos.length} public repositories.`);
+      - name: Commit test file
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-        // --------------------------------------------------
-        // Calculate languages
-        // --------------------------------------------------
+          git add assets/test.txt
 
-        const languages = {};
-
-        for (const repo of repos) {
-          if (repo.fork) {
-            continue;
-          }
-
-          try {
-            const response =
-              await github.rest.repos.listLanguages({
-                owner: username,
-                repo: repo.name
-              });
-
-            for (const [language, bytes] of Object.entries(response.data)) {
-              languages[language] =
-                (languages[language] || 0) + bytes;
-            }
-          } catch (error) {
-            console.log(
-              `Skipping ${repo.name}: ${error.message}`
-            );
-          }
-        }
-
-        const totalBytes =
-          Object.values(languages).reduce(
-            (total, bytes) => total + bytes,
-            0
-          );
-
-        const sortedLanguages =
-          Object.entries(languages)
-            .sort((a, b) => b[1] - a[1])
-            .slice(0, 10);
-
-        // --------------------------------------------------
-        // Language colors
-        // --------------------------------------------------
-
-        const languageColors = {
-          TypeScript: "#3178c6",
-          JavaScript: "#f1e05a",
-          Python: "#3572A5",
-          Java: "#b07219",
-          HTML: "#e34c26",
-          CSS: "#563d7c",
-          SCSS: "#c6538c",
-          Shell: "#89e051",
-          PHP: "#4F5D95",
-          C: "#555555",
-          "C++": "#f34b7d",
-          "C#": "#178600",
-          Go: "#00ADD8",
-          Rust: "#dea584",
-          Dart: "#00B4AB",
-          Kotlin: "#A97BFF",
-          Swift: "#F05138",
-          Ruby: "#701516",
-          Vue: "#41b883",
-          SQL: "#e38c00"
-        };
-
-        // --------------------------------------------------
-        // Generate language bars
-        // --------------------------------------------------
-
-        const languageRows = sortedLanguages.map(
-          ([language, bytes], index) => {
-            const percentage =
-              totalBytes > 0
-                ? (bytes / totalBytes) * 100
-                : 0;
-
-            const percentageText =
-              percentage.toFixed(1);
-
-            const barWidth =
-              Math.max(
-                percentage * 3.8,
-                percentage > 0 ? 4 : 0
-              );
-
-            const y =
-              78 + index * 42;
-
-            const color =
-              languageColors[language] ||
-              "#58a6ff";
-
-            return `
-              <text
-                x="30"
-                y="${y}"
-                fill="#c9d1d9"
-                font-size="15"
-                font-family="Arial, Helvetica, sans-serif"
-              >${language}</text>
-
-              <rect
-                x="155"
-                y="${y - 15}"
-                width="380"
-                height="16"
-                rx="8"
-                fill="#30363d"
-              />
-
-              <rect
-                x="155"
-                y="${y - 15}"
-                width="${barWidth}"
-                height="16"
-                rx="8"
-                fill="${color}"
-              />
-
-              <text
-                x="555"
-                y="${y}"
-                fill="#8b949e"
-                font-size="14"
-                font-family="Arial, Helvetica, sans-serif"
-              >${percentageText}%</text>
-            `;
-          }
-        ).join("");
-
-        const languageHeight =
-          Math.max(
-            150,
-            110 + sortedLanguages.length * 42
-          );
-
-        const languagesSvg = `
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="640"
-            height="${languageHeight}"
-            viewBox="0 0 640 ${languageHeight}"
-          >
-
-            <rect
-              width="640"
-              height="${languageHeight}"
-              rx="14"
-              fill="#0d1117"
-              stroke="#30363d"
-            />
-
-            <text
-              x="30"
-              y="40"
-              fill="#f0f6fc"
-              font-size="20"
-              font-weight="bold"
-              font-family="Arial, Helvetica, sans-serif"
-            >
-              Languages used in my repositories
-            </text>
-
-            ${languageRows}
-
-          </svg>
-        `;
-
-        // --------------------------------------------------
-        // Get GitHub user information
-        // --------------------------------------------------
-
-        const userResponse =
-          await github.rest.users.getByUsername({
-            username
-          });
-
-        const user =
-          userResponse.data;
-
-        // --------------------------------------------------
-        // Generate GitHub statistics
-        // --------------------------------------------------
-
-        const statsSvg = `
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="640"
-            height="210"
-            viewBox="0 0 640 210"
-          >
-
-            <rect
-              width="640"
-              height="210"
-              rx="14"
-              fill="#0d1117"
-              stroke="#30363d"
-            />
-
-            <text
-              x="30"
-              y="40"
-              fill="#f0f6fc"
-              font-size="20"
-              font-weight="bold"
-              font-family="Arial, Helvetica, sans-serif"
-            >
-              GitHub Stats
-            </text>
-
-            <text
-              x="30"
-              y="82"
-              fill="#8b949e"
-              font-size="14"
-              font-family="Arial, Helvetica, sans-serif"
-            >
-              Public repositories
-            </text>
-
-            <text
-              x="30"
-              y="115"
-              fill="#58a6ff"
-              font-size="26"
-              font-weight="bold"
-              font-family="Arial, Helvetica, sans-serif"
-            >
-              ${user.public_repos}
-            </text>
-
-            <text
-              x="230"
-              y="82"
-              fill="#8b949e"
-              font-size="14"
-              font-family="Arial, Helvetica, sans-serif"
-            >
-              Followers
-            </text>
-
-            <text
-              x="230"
-              y="115"
-              fill="#58a6ff"
-              font-size="26"
-              font-weight="bold"
-              font-family="Arial, Helvetica, sans-serif"
-            >
-              ${user.followers}
-            </text>
-
-            <text
-              x="430"
-              y="82"
-              fill="#8b949e"
-              font-size="14"
-              font-family="Arial, Helvetica, sans-serif"
-            >
-              Following
-            </text>
-
-            <text
-              x="430"
-              y="115"
-              fill="#58a6ff"
-              font-size="26"
-              font-weight="bold"
-              font-family="Arial, Helvetica, sans-serif"
-            >
-              ${user.following}
-            </text>
-
-            <line
-              x1="30"
-              y1="145"
-              x2="610"
-              y2="145"
-              stroke="#30363d"
-            />
-
-            <text
-              x="30"
-              y="175"
-              fill="#8b949e"
-              font-size="13"
-              font-family="Arial, Helvetica, sans-serif"
-            >
-              Profile statistics generated automatically
-            </text>
-
-          </svg>
-        `;
-
-        // --------------------------------------------------
-        // Save generated files
-        // --------------------------------------------------
-
-        fs.mkdirSync("assets", {
-          recursive: true
-        });
-
-        fs.writeFileSync(
-          "assets/languages.svg",
-          languagesSvg.trim()
-        );
-
-        fs.writeFileSync(
-          "assets/github-stats.svg",
-          statsSvg.trim()
-        );
-
-        console.log(
-          "Statistics generated successfully."
-        );
-
-  - name: Commit generated statistics
-    run: |
-      git config user.name "github-actions[bot]"
-      git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-      git add assets/languages.svg assets/github-stats.svg
-
-      if git diff --cached --quiet; then
-        echo "No changes detected."
-      else
-        git commit -m "chore: update profile statistics"
-        git push
-      fi
+          if git diff --cached --quiet; then
+            echo "No changes detected."
+          else
+            git commit -m "chore: test profile statistics workflow"
+            git push
+          fi
