@@ -2,8 +2,8 @@
 
 <p align="center">
   <img
-    src="https://github-readme-stats.vercel.app/api/top-langs?username=mamontalvan&layout=compact&langs_count=15&size_weight=0.5&count_weight=0.5&hide_border=true&cache_seconds=86400"
-    alt="Most used languages"
+    src="./assets/languages.svg"
+    alt="Languages used in my repositories"
   />
 </p>
 
@@ -13,7 +13,7 @@
 
 <p align="center">
   <img
-    src="https://github-readme-stats.vercel.app/api?username=mamontalvan&show_icons=true&hide_border=true&cache_seconds=86400"
+    src="./assets/github-stats.svg"
     alt="GitHub Stats"
   />
 </p>
@@ -24,7 +24,7 @@
 
 <p align="center">
   <img
-    src="https://streak-stats.demolab.com?user=mamontalvan&hide_border=true"
-    alt="GitHub Contribution Streak"
+    src="./assets/contribution-streak.svg"
+    alt="Contribution Streak"
   />
 </p>
