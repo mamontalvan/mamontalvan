@@ -31,7 +31,7 @@
         fill="#c9d1d9"
         font-size="15"
         font-family="Arial, Helvetica, sans-serif"
-      >TypeScript</text>
+      >HTML</text>
 
       <rect
         x="155"
@@ -45,10 +45,10 @@
       <rect
         x="155"
         y="63"
-        width="240.32283827080457"
+        width="158.1838793746028"
         height="16"
         rx="8"
-        fill="#3178c6"
+        fill="#e34c26"
       />
 
       <text
@@ -57,11 +57,45 @@
         fill="#8b949e"
         font-size="14"
         font-family="Arial, Helvetica, sans-serif"
-      >63.2%</text>
+      >41.6%</text>
     
       <text
         x="30"
         y="120"
+        fill="#c9d1d9"
+        font-size="15"
+        font-family="Arial, Helvetica, sans-serif"
+      >TypeScript</text>
+
+      <rect
+        x="155"
+        y="105"
+        width="380"
+        height="16"
+        rx="8"
+        fill="#30363d"
+      />
+
+      <rect
+        x="155"
+        y="105"
+        width="140.5319575620718"
+        height="16"
+        rx="8"
+        fill="#3178c6"
+      />
+
+      <text
+        x="555"
+        y="120"
+        fill="#8b949e"
+        font-size="14"
+        font-family="Arial, Helvetica, sans-serif"
+      >37.0%</text>
+    
+      <text
+        x="30"
+        y="162"
         fill="#c9d1d9"
         font-size="15"
         font-family="Arial, Helvetica, sans-serif"
@@ -69,7 +103,7 @@
 
       <rect
         x="155"
-        y="105"
+        y="147"
         width="380"
         height="16"
         rx="8"
@@ -78,8 +112,8 @@
 
       <rect
         x="155"
-        y="105"
-        width="110.53922259492063"
+        y="147"
+        width="64.63927211590762"
         height="16"
         rx="8"
         fill="#f1e05a"
@@ -87,45 +121,11 @@
 
       <text
         x="555"
-        y="120"
-        fill="#8b949e"
-        font-size="14"
-        font-family="Arial, Helvetica, sans-serif"
-      >29.1%</text>
-    
-      <text
-        x="30"
-        y="162"
-        fill="#c9d1d9"
-        font-size="15"
-        font-family="Arial, Helvetica, sans-serif"
-      >HTML</text>
-
-      <rect
-        x="155"
-        y="147"
-        width="380"
-        height="16"
-        rx="8"
-        fill="#30363d"
-      />
-
-      <rect
-        x="155"
-        y="147"
-        width="14.379143921100681"
-        height="16"
-        rx="8"
-        fill="#e34c26"
-      />
-
-      <text
-        x="555"
         y="162"
         fill="#8b949e"
         font-size="14"
         font-family="Arial, Helvetica, sans-serif"
-      >3.8%</text>
+      >17.0%</text>
     
       <text
         x="30"
@@ -147,7 +147,7 @@
       <rect
         x="155"
         y="189"
-        width="12.091715133122243"
+        width="15.0852806027607"
         height="16"
         rx="8"
         fill="#563d7c"
@@ -159,7 +159,7 @@
         fill="#8b949e"
         font-size="14"
         font-family="Arial, Helvetica, sans-serif"
-      >3.2%</text>
+      >4.0%</text>
     
       <text
         x="30"
@@ -193,7 +193,7 @@
         fill="#8b949e"
         font-size="14"
         font-family="Arial, Helvetica, sans-serif"
-      >0.5%</text>
+      >0.3%</text>
     
       <text
         x="30"
@@ -227,7 +227,7 @@
         fill="#8b949e"
         font-size="14"
         font-family="Arial, Helvetica, sans-serif"
-      >0.2%</text>
+      >0.1%</text>
     
 
   </svg>
